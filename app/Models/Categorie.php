@@ -5,29 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Marque extends Model
+class Categorie extends Model
 {
     use HasFactory;
-
+    
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'marque';
+    protected $table = 'categorie';
 
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = 'marque_id';
+    protected $primaryKey = 'categorie_id';
 
     /**
-     * Get the produits for the blog marque.
+     * Get the produits for the blog categorie.
      */
     public function produits()
     {
-        return $this->hasMany(Produit::class, 'produit_id', 'marque_id');
+        return $this->hasMany(Produit::class, 'categorie_id', 'categorie_id');
     }
 }
