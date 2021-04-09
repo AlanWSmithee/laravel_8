@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +19,12 @@ class MainController extends Controller
 
     public function test()
     {
+        // méthode moderne avec l'orm eloquent
+        foreach (Marque::all() as $marque) {
+            echo $marque->nom;
+        }
+
+        // méthode old school avec une requête sql
         $sql = 'SELECT marque.marque_id, marque.nom AS marque_nom, produit.produit_id, produit.nom AS produit_nom
         FROM marque
         INNER JOIN produit ON produit.marque_id = marque.marque_id';
@@ -39,6 +46,7 @@ class MainController extends Controller
             <?php
             $marque_id_precedent = $row->marque_id;
         }
+        
         exit();
     }
 }
